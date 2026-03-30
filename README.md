@@ -28,7 +28,7 @@
 
 | 層級 | 技術 | 用途 |
 |------|------|------|
-| 資料儲存 | SQL Server | 原始資料匯入、清洗、轉換、建模 |
+| 資料儲存 | SQL Server 2019 | 原始資料匯入、清洗、轉換、建模 |
 | 資料處理 | T-SQL | 資料清洗（雙引號處理、型態轉換）、累計計算、視窗函數、Stored Procedure 分批寫入 |
 | 分析方法 | ABC-XYZ 分析 | 帕累托分析（銷售貢獻）+ 變異係數分析（需求穩定性），產出九宮格管理策略 |
 | 視覺化 | Power BI + DAX | 星型模型設計、互動式儀表板、補貨清單自動生成 |
@@ -60,7 +60,7 @@
   RecentInventory                    MonthlyInventorySummary
    (784萬筆)                            (211萬筆)
   近期庫存水位                          月銷售量/額/週轉率
-                                       → 月度分析 & ABC-XYZ
+  → Power BI 播放軸                   → 月度分析 & ABC-XYZ
        │                                       │
        ▼                                       ▼
 ┌──────────────────────────────────────────────────────────┐
@@ -76,6 +76,32 @@
 
         Power BI 匯入總量：~1,300 萬筆（較原始減少 83%）
 ```
+
+---
+
+## ⭐ Power BI 星型模型
+
+本專案採用星型模型（Star Schema）設計，以維度表圍繞事實表建立一對多關聯，
+篩選方向統一從維度表流向事實表，確保 Power BI 的交叉篩選邏輯正確運作。
+
+`Dim_SKU` 作為橋接表是本模型的關鍵設計 —
+事實表只有 SKU 編號（格式：`門市編號_城市_品牌編號`），沒有直接的品牌或門市欄位，
+必須透過 `Dim_SKU` 才能讓 `Dim_Store`（門市）和 `Dim_Product`（品牌）同時作用在事實表上。
+
+<img width="1417" height="695" alt="螢幕擷取畫面 2026-03-31 010137" src="https://github.com/user-attachments/assets/76be0f73-90c9-4569-9188-780136cf7713" />
+
+
+| 來源表（1 端） | → | 目標表（多端） | 關聯欄位 |
+|:---:|:---:|:---:|:---:|
+| Dim_Product | → | Dim_SKU | 品牌編號 |
+| Dim_Product | → | Dim_Brand_Grade | BrandID |
+| Dim_Product | → | Dim_LeadTime | BrandID |
+| Dim_Product | → | Dim_Vendor | 供應商編號 |
+| Dim_SKU | → | RecentInventory | SKU編號 |
+| Dim_SKU | → | MonthlyInventorySummary | SKU編號 |
+| Dim_Store | → | RecentInventory | 門市編號 |
+| Dim_Store | → | MonthlyInventorySummary | StoreID |
+| Dim_Date | → | RecentInventory | 日期 |
 
 ---
 
@@ -110,26 +136,34 @@
 
 ### 頁面一：全公司庫存總覽
 
-> KPI 卡片 + ABC/XYZ 九宮格矩陣 + 品牌庫存狀態散佈圖 + 門市資訊總覽表
+總部視角的全局監控頁面。上方 KPI 卡片一眼掌握庫存總金額、補貨品牌數、滯銷品項數；
+中間 ABC/XYZ 九宮格矩陣可快速識別品牌分布；右側散佈圖以覆蓋天數為 X 軸、庫存金額為 Y 軸，
+透過顏色區分四種庫存狀態（缺貨風險 / 健康庫存 / 過剩庫存 / 滯銷積壓），
+使用者可自訂健康庫存上限與滯銷門檻。下方門市資訊總覽表供跨門市比較。
 
-<img width="1324" height="738" alt="image" src="https://github.com/user-attachments/assets/21d65939-d2b7-486b-a098-e164046078d9" />
-
+<img width="1324" height="738" alt="螢幕擷取畫面 2026-03-30 095215" src="https://github.com/user-attachments/assets/153c6cd1-4713-429d-8257-e8ce8e3d55f0" />
 
 
 ### 頁面二：門市補貨清單
 
-> 單一門市的補貨行動清單，含 ABC/XYZ 分級、覆蓋天數、ROP、安全庫存、
-> 建議補貨量與金額、供應商名稱，可直接匯出 Excel 給採購人員使用
+採購人員的每日行動頁面。選擇特定門市後，系統自動列出所有需要補貨的品牌，
+每一列包含 ABC/XYZ 分級、現有庫存、平均日銷量、覆蓋天數、交期、安全庫存、
+ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
+左側圓環圖顯示 ABC 補貨品牌占比，右側長條圖列出待補貨金額前 10 大供應商，
+清單可直接匯出 Excel 作為採購依據。
 
-<img width="1326" height="746" alt="image" src="https://github.com/user-attachments/assets/a488c089-153e-4167-8ce2-bd97628d9cbb" />
+<img width="1326" height="746" alt="螢幕擷取畫面 2026-03-30 095251" src="https://github.com/user-attachments/assets/67aeb75e-77c7-4649-9866-cd4ddc412431" />
 
 
 ### 頁面三：門市積壓情況
 
-> 月末庫存金額趨勢、庫存/銷售對比、各月 ABC 週轉率、
-> 過剩/滯銷商品清單（含建議動作：暫緩補貨 or 停補/促銷）
+庫存健康度的深度分析頁面。左上堆疊長條圖呈現全年月末庫存金額趨勢（按 ABC 分級），
+右上雙軸折線圖對比月末庫存金額與月銷售額的走勢，用於判斷庫存是否跟上銷售節奏。
+中間矩陣表展示各月 ABC 分級的庫存週轉率。
+下方列出過剩與滯銷商品清單，每筆標註 ABC/XYZ 分級、月末庫存、覆蓋天數，
+並根據分級自動建議「暫緩補貨」（A/B 級）或「停補/促銷」（C 級）。
 
-<img width="1327" height="746" alt="image" src="https://github.com/user-attachments/assets/c6f05d8d-b37a-492c-b303-aad414c52fed" />
+<img width="1327" height="746" alt="螢幕擷取畫面 2026-03-30 095322" src="https://github.com/user-attachments/assets/37c751e8-c860-4001-a1f1-982236cf7703" />
 
 
 ---
@@ -145,13 +179,31 @@
 
 ---
 
+## 🚀 重現步驟
+
+```
+1. 將 data/ 中的 CSV 匯入 SQL Server
+2. 依序執行 sql/00 ~ sql/09 建立所有資料表
+3. 在 Power BI 中連接 SQL Server，匯入資料表
+4. 建立星型模型關聯（參考上方關聯表）
+5. 以 DAX 建立 Dim_Date 日期維度表與計算量值
+```
+
+---
+
 ## 📂 專案結構
 
 ```
 ├── README.md                        ← 你正在看的這份文件
-├── dashboard_overview.png           ← 儀表板截圖：全公司庫存總覽
-├── dashboard_replenishment.png      ← 儀表板截圖：門市補貨清單
-├── dashboard_overstock.png          ← 儀表板截圖：門市積壓情況
+├── images/
+│   ├── star_schema.png              ← Power BI 星型模型截圖
+│   ├── dashboard_overview.png       ← 儀表板截圖：全公司庫存總覽
+│   ├── dashboard_replenishment.png  ← 儀表板截圖：門市補貨清單
+│   └── dashboard_overstock.png      ← 儀表板截圖：門市積壓情況
+├── data/
+│   ├── 期初庫存_樣本.csv
+│   ├── 進貨紀錄_樣本.csv
+│   └── 銷售紀錄_樣本.csv
 └── sql/
     ├── 00_raw_data_cleaning.sql     ← 原始資料系統性清洗說明
     ├── 01_DailyInventorySnapshot.sql
