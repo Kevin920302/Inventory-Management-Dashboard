@@ -60,7 +60,7 @@
   RecentInventory                    MonthlyInventorySummary
    (784萬筆)                            (211萬筆)
   近期庫存水位                          月銷售量/額/週轉率
-  → Power BI 播放軸                   → 月度分析 & ABC-XYZ
+                                       → 月度分析 & ABC-XYZ
        │                                       │
        ▼                                       ▼
 ┌──────────────────────────────────────────────────────────┐
