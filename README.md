@@ -137,7 +137,6 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 
 
 ## 📊 Dashboard Demo
-> GIF 檔案較大，請稍候載入...
 ![1-ezgif com-optimize](https://github.com/user-attachments/assets/fe109b3d-95e8-49c6-a74f-86818ee01a87)
 
 
