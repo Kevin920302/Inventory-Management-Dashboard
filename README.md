@@ -171,11 +171,6 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 
 ```
 ├── README.md                        ← 你正在看的這份文件
-├── images/
-│   ├── star_schema.png              ← Power BI 星型模型截圖
-│   ├── dashboard_overview.png       ← 儀表板截圖：全公司庫存總覽
-│   ├── dashboard_replenishment.png  ← 儀表板截圖：門市補貨清單
-│   └── dashboard_overstock.png      ← 儀表板截圖：門市積壓情況
 ├── data/
 │   ├── 期初庫存_樣本.csv
 │   ├── 進貨紀錄_樣本.csv
@@ -192,3 +187,6 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
     ├── 08_Dim_Brand_Grade.sql       ← 含 ABC-XYZ 方法論完整說明
     └── 09_Dim_LeadTime.sql
 ```
+## 👤 作者
+**陳俊嘉 CHUNCHIA(Kevin) Chen**
+📧 你的信箱 | chunchia.chen.kevin@gmail.com
