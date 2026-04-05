@@ -202,3 +202,4 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 ## 👤 作者
 **陳俊嘉 CHUNCHIA(Kevin) Chen**
 📧 信箱 | chunchia.chen.kevin@gmail.com
+📧 [chunchia.chen.kevin@gmail.com](mailto:chunchia.chen.kevin@gmail.com)
