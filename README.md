@@ -3,6 +3,17 @@
 > 從三張原始 CSV 出發，運用 SQL Server 資料工程 + Power BI 視覺化，
 > 打造一套可操作的門市庫存監控與智慧補貨決策系統。
 
+## 🔗 快速導覽
+
+| | 連結 | 說明 |
+|---|---|---|
+| 📊 **線上儀表板** | [開啟 Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiOGRjZTA0YTItOTVlOC00YjJlLWJkNzMtYzc4ODMyOGM3NjlmIiwidCI6IjcwODk3ZDZmLTBhNDgtNDlkZS04ODBmLTI3ZDhhZDQ1ZDc2ZSIsImMiOjEwfQ%3D%3D) | 可直接互動操作的 Power BI 報表 |
+| 📑 **專案簡報** | [Presentation.pdf](./Presentation.pdf) | 完整專案說明，含分析思路與成果 |
+| 🎬 **操作 Demo** | [↓ 跳至 GIF](#-dashboard-demo) | 儀表板實際操作展示 |
+| 🗄️ **SQL 語法** | [sql/ 資料夾](./sql/) | 10 支建表語法，含完整邏輯說明 |
+| 📂 **原始資料** | [data/ 資料夾](./data/) | 三張樣本 CSV（期初庫存／進貨／銷售） |
+
+> 💡 **建議閱讀順序：** 先看簡報了解整體架構 → 開啟儀表板實際操作 → 查閱 SQL 了解技術細節
 ---
 
 ## 🎯 專案目標與使用者
@@ -189,4 +200,4 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 ```
 ## 👤 作者
 **陳俊嘉 CHUNCHIA(Kevin) Chen**
-📧 你的信箱 | chunchia.chen.kevin@gmail.com
+📧 信箱 | chunchia.chen.kevin@gmail.com
