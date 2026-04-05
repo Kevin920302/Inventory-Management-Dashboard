@@ -99,6 +99,7 @@
 ---
 
 ## 📸 儀表板成果展示
+🔗儀表板連結：https://app.powerbi.com/view?r=eyJrIjoiOGRjZTA0YTItOTVlOC00YjJlLWJkNzMtYzc4ODMyOGM3NjlmIiwidCI6IjcwODk3ZDZmLTBhNDgtNDlkZS04ODBmLTI3ZDhhZDQ1ZDc2ZSIsImMiOjEwfQ%3D%3D
 
 ### 頁面一：全公司庫存總覽
 
