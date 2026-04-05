@@ -136,7 +136,9 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 <img width="1326" height="745" alt="image" src="https://github.com/user-attachments/assets/4e33d941-9315-44b6-82ff-7b8b27dc0a25" />
 
 
-
+## 📊 Dashboard Demo
+> GIF 檔案較大，請稍候載入...
+C:\Users\User\OneDrive\桌面\PowerBI\庫存儀錶板_期末專題\PowerBI作品集\1-ezgif.com-optimize.gif
 
 ---
 
