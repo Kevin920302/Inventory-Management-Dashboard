@@ -107,7 +107,8 @@
 透過顏色區分四種庫存狀態（缺貨風險 / 健康庫存 / 過剩庫存 / 滯銷積壓），
 使用者可自訂健康庫存上限與滯銷門檻。下方門市資訊總覽表供跨門市比較。
 
-<img width="1323" height="735" alt="螢幕擷取畫面 2026-04-01 161714" src="https://github.com/user-attachments/assets/2c52afbd-3717-47e8-90a1-0f05ca4264d1" />
+<img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/70593446-cdf1-4c14-9543-c97818194576" />
+
 
 
 
@@ -119,7 +120,8 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 左側圓環圖顯示 ABC 補貨品牌占比，右側長條圖列出待補貨金額前 10 大供應商，
 清單可直接匯出 Excel 作為採購依據。
 
-<img width="1324" height="746" alt="螢幕擷取畫面 2026-04-01 161901" src="https://github.com/user-attachments/assets/112fa8fd-7189-459d-9417-d60dd20d5ecc" />
+<img width="1326" height="744" alt="image" src="https://github.com/user-attachments/assets/8ebf19a3-5c86-486c-9eb1-33631c17ff0c" />
+
 
 
 
@@ -131,7 +133,8 @@ ROP（再訂購點）、建議補貨量與金額、負責供應商名稱。
 下方列出過剩與滯銷商品清單，每筆標註 ABC/XYZ 分級、月末庫存、覆蓋天數，
 並根據分級自動建議「暫緩補貨」（A/B 級）或「停補/促銷」（C 級）。
 
-<img width="1325" height="748" alt="螢幕擷取畫面 2026-04-01 161936" src="https://github.com/user-attachments/assets/a4110d4e-8f52-4e28-91e8-82f567b41633" />
+<img width="1326" height="745" alt="image" src="https://github.com/user-attachments/assets/4e33d941-9315-44b6-82ff-7b8b27dc0a25" />
+
 
 
 
