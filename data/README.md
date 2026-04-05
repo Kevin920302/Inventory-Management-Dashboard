@@ -4,7 +4,7 @@
 
 **Kaggle：** [Inventory Analysis Case Study](https://www.kaggle.com/datasets/bhanupratapbiswas/inventory-analysis-case-study/data)
 
-> 本資料集模擬一間中型製造業公司的庫存管理情境，包含完整的進銷存交易紀錄，
+> 本資料集模擬一間中型零售業公司的庫存管理情境，包含完整的進銷存交易紀錄，
 > 適合用於庫存分析、ABC 分類、補貨策略等零售與供應鏈分析專案。
 
 ---
@@ -43,6 +43,7 @@
 
 | 欄位 | 說明 |
 |------|------|
+| InventoryId | 庫存唯一識別碼（格式：`門市編號_城市_品牌編號`） |
 | Store | 門市編號 |
 | City | 門市所在城市 |
 | Brand | 品牌編號 |
@@ -56,10 +57,11 @@
 
 ### 2. `PurchasesFINAL12312016.csv`｜進貨紀錄
 
-記錄 2016 年全年所有進貨交易明細，包含供應商與採購數量。
+記錄 2016 年全年所有進貨交易明細，包含供應商資訊與採購數量。
 
 | 欄位 | 說明 |
 |------|------|
+| InventoryId | 庫存唯一識別碼（格式：`門市編號_城市_品牌編號`） |
 | Store | 門市編號 |
 | Brand | 品牌編號 |
 | Description | 商品描述 |
@@ -71,8 +73,9 @@
 | ReceivingDate | 實際到貨日期 |
 | InvoiceDate | 發票日期 |
 | PayDate | 付款日期 |
+| PurchasePrice | 採購單價 |
 | Quantity | 進貨數量 |
-| Dollars | 進貨金額 |
+| Dollars | 進貨總金額 |
 | Classification | 商品分類 |
 
 ---
@@ -83,6 +86,7 @@
 
 | 欄位 | 說明 |
 |------|------|
+| InventoryId | 庫存唯一識別碼（格式：`門市編號_城市_品牌編號`） |
 | Store | 門市編號 |
 | Brand | 品牌編號 |
 | Description | 商品描述 |
@@ -91,7 +95,7 @@
 | SalesDollars | 銷售金額 |
 | SalesPrice | 銷售單價 |
 | SalesDate | 銷售日期 |
-| Volume | 銷售量（體積/容量單位） |
+| Volume | 容量（ml） |
 | Classification | 商品分類 |
 | ExciseTax | 消費稅 |
 | VendorNo | 供應商編號 |
